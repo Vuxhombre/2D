@@ -6,10 +6,13 @@ using UnityEngine.UIElements.Experimental;
 public class Health : MonoBehaviour
 
 {
-    private float Hp;
+    public float Hp;
     public float MaxHP = 10;
     private bool invicibility;
-
+    
+    public CoinComponent Coincomponent;
+    public float CoinHpAdd = 10;
+   
     public delegate void OnHealthChangedHandler(float newHealth, float amountChanged);
     public event OnHealthChangedHandler OnHealthChanged;
 
@@ -57,5 +60,13 @@ public class Health : MonoBehaviour
         OnHealthChanged?.Invoke(Hp, healing);
        //Debug.Log(Hp);
     }
-
+    public void AddCoin(float CoinAmount)
+    {
+        if (CoinAmount == 10)
+        {
+            Hp += CoinHpAdd;
+            CoinAmount -= 10;
+        }
+     
+    }
 }

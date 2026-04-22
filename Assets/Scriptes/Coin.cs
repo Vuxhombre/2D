@@ -1,26 +1,22 @@
 using UnityEngine;
 
-public class Healing : MonoBehaviour
+public class Coin : MonoBehaviour
 {
-    public float HealingValue = 1;
+    public int coinValue = 1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
 
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.GetComponent<Health>().AddHealing(HealingValue);
+        collision.GetComponent<CoinComponent>().AddCoin(coinValue);
         Destroy(this.gameObject);
     }
-
-
-
 }

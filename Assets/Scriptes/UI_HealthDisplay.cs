@@ -1,12 +1,13 @@
-using System;
+using System.ComponentModel;
 using TMPro;
 using UnityEngine;
 
 public class UI_HealthDisplay : MonoBehaviour
 {
     public Health health;
-    public TextMeshProUGUI textComponent;
-    void Start()
+    public TextMeshProUGUI textcomponent;
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Awake()
     {
         health.OnHealthChanged += OnHealthChanged;
         health.OnHpInitialized += OnHpInitialized;
@@ -14,13 +15,13 @@ public class UI_HealthDisplay : MonoBehaviour
 
     private void OnHealthChanged(float newHealth, float amountChanged)
     {
-        //throw new NotImplementedException();
-        //Debug.Log(newHealth + ":" +  amountChanged);
-        textComponent.text = newHealth.ToString();
+        //Debug.Log(newCoin + ":" + amountChanged);
+        textcomponent.text = newHealth.ToString();
     }
     private void OnHpInitialized(float currentHealth)
     {
-        textComponent.text += currentHealth.ToString();
+        textcomponent.text += currentHealth.ToString();
     }
+    
 }
 
