@@ -2134,6 +2134,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Hp: 0
   MaxHP: 10
+  CoinForHP: 10
+  RemoveCoins: 10
   Coincomponent: {fileID: 1109150508}
   CoinHpAdd: 10
 --- !u!114 &1109150508
@@ -2149,6 +2151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CoinAmount: 0
+  health: {fileID: 1109150507}
 --- !u!1 &1202204394
 GameObject:
   m_ObjectHideFlags: 0

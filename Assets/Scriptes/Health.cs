@@ -9,14 +9,17 @@ public class Health : MonoBehaviour
     public float Hp;
     public float MaxHP = 10;
     private bool invicibility;
-    
+
+
+    public float CoinForHP = 10;
+    public int RemoveCoins = 10;
     public CoinComponent Coincomponent;
     public float CoinHpAdd = 10;
-   
+
     public delegate void OnHealthChangedHandler(float newHealth, float amountChanged);
     public event OnHealthChangedHandler OnHealthChanged;
 
-    public delegate void OnHpInitializedHandler (float currentHealth);
+    public delegate void OnHpInitializedHandler(float currentHealth);
     public event OnHpInitializedHandler OnHpInitialized;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,7 +32,7 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void AddDamage(float damage)
@@ -54,19 +57,11 @@ public class Health : MonoBehaviour
         invicibility = false;
         Debug.Log("reset");
     }
-  public void AddHealing(float healing)
+    public void AddHealing(float healing)
     {
         Hp += healing;
         OnHealthChanged?.Invoke(Hp, healing);
-       //Debug.Log(Hp);
+        //Debug.Log(Hp);
     }
-    public void AddCoin(float CoinAmount)
-    {
-        if (CoinAmount == 10)
-        {
-            Hp += CoinHpAdd;
-            CoinAmount -= 10;
-        }
-     
-    }
+    
 }

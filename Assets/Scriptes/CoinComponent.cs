@@ -1,10 +1,11 @@
+using Mono.Cecil;
 using UnityEngine;
 
 public class CoinComponent : MonoBehaviour
     
 {
     public int CoinAmount;
-    
+    public Health health;
     public delegate void OnCoinChangedHandler(int newCoin, int amountChanged);
     public event OnCoinChangedHandler OnCoinChanged;
 
@@ -28,5 +29,14 @@ public class CoinComponent : MonoBehaviour
     {
         CoinAmount += coinValue;
         OnCoinChanged?.Invoke(CoinAmount, coinValue);
+
+        if (CoinAmount == health.CoinForHP)
+        {
+            health.AddHealing(health.CoinHpAdd);
+            CoinAmount -= health.RemoveCoins;
+            OnCoinChanged?.Invoke(CoinAmount, -health.RemoveCoins);
+        }
+
+
     }
 }
