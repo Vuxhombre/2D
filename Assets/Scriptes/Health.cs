@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements.Experimental;
 
 public class Health : MonoBehaviour
@@ -32,7 +33,7 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+      
     }
 
     public void AddDamage(float damage)
@@ -48,6 +49,7 @@ public class Health : MonoBehaviour
             if (Hp <= 0)
             {
                 Destroy(this.gameObject);
+                SceneManager.LoadScene("EndGame");
             }
         }
     }
