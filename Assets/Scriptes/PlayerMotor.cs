@@ -12,6 +12,10 @@ public class PlayerMotor : MonoBehaviour
     private bool canJump = true;
     public float maxspeed = 5;
     public float stoppingForce = 5;
+
+    private float XPosLastFrame;
+    public Animator animator;
+    public SpriteRenderer spriteRenderer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,6 +27,7 @@ public class PlayerMotor : MonoBehaviour
     {
         HandlePlayerXMovement();
         MaxSpeedLimit();
+        FlipCharacterX();
         //transform.position += new Vector3(direction.x, direction.y, 0) * Time.deltaTime * speed;
     }
 
@@ -36,6 +41,27 @@ public class PlayerMotor : MonoBehaviour
         {
             rigidbody2D.AddForce(new Vector2(-rigidbody2D.linearVelocityX * stoppingForce, 0));
         }
+        if (direction.x != 0)
+        {
+            animator.SetBool("IsRunning", true);
+        }
+        else
+        {
+            animator.SetBool("IsRunning", false);
+        }
+    }
+
+    private void FlipCharacterX()
+    {
+        if (transform.position.x > XPosLastFrame)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if (transform.position.x < XPosLastFrame)
+        {
+            spriteRenderer.flipX = true;
+        }
+        XPosLastFrame = transform.position.x;
     }
 
     private void MaxSpeedLimit()
