@@ -1,3 +1,4 @@
+using System.Collections;
 using System.IO;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -6,12 +7,14 @@ using UnityEngine.InputSystem;
 public class PlayerMotor : MonoBehaviour
 {
     Vector2 direction;
-    Rigidbody2D rigidbody2D;
+    private Rigidbody2D rigidbody2D;
     public float speed = 10;
     public float jump = 10;
     private bool canJump = true;
     public float maxspeed = 5;
     public float stoppingForce = 5;
+    public float DashForceAmount = 10;
+    private bool canDash = true;
 
     private float XPosLastFrame;
     public Animator animator;
@@ -66,6 +69,10 @@ public class PlayerMotor : MonoBehaviour
 
     private void MaxSpeedLimit()
     {
+        if (!canDash)
+        {
+            return;
+        }
         if (rigidbody2D.linearVelocityX >= maxspeed)
         {
             //Debug.Log("exceding nax speed");
@@ -77,13 +84,13 @@ public class PlayerMotor : MonoBehaviour
         }
     }
 
-    void OnMove(InputValue value)
+    private void OnMove(InputValue value)
     {
         //Debug.Log("Move");
         //Debug.Log(value.Get<Vector2>());
         direction = value.Get<Vector2>();
     }
-    void OnJump()
+    private void OnJump()
     {
         if (canJump)
         {
@@ -94,5 +101,28 @@ public class PlayerMotor : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         canJump = true;
+    }
+    private void OnDash()
+    {
+        //Debug.Log("dash");
+        if (canDash)
+        {
+            if (direction.x != 0)
+            {
+                rigidbody2D.AddForce(new Vector2(direction.x * DashForceAmount, 0), ForceMode2D.Impulse);
+            }
+            else
+            {
+                rigidbody2D.AddForce(new Vector2(DashForceAmount, 0), ForceMode2D.Impulse);
+
+            }
+            canDash = false;
+            StartCoroutine(ResetDash(1));
+        }
+    }
+    IEnumerator ResetDash(float cooldown)
+    {
+        yield return new WaitForSeconds(cooldown);
+        canDash = true;
     }
 }

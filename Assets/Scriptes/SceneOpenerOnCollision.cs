@@ -3,9 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class SceneOpenerOnCollision : SceneOpener
 {
-    public string NextLevelName;
+    public string LevelToExecute;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        OpenScene(NextLevelName);
+        OpenScene(LevelToExecute);
     }
 }

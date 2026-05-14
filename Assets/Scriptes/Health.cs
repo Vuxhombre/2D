@@ -57,7 +57,7 @@ public class Health : MonoBehaviour
     {
         yield return new WaitForSeconds(resetTime);
         invicibility = false;
-        Debug.Log("reset");
+        //Debug.Log("reset");
     }
     public void AddHealing(float healing)
     {
