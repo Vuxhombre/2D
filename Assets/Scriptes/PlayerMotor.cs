@@ -11,26 +11,40 @@ public class PlayerMotor : MonoBehaviour
     public float speed = 10;
     public float jump = 10;
     private bool canJump = true;
+    private int JumpCount;
+    public int MaxJump = 2;
     public float maxspeed = 5;
     public float stoppingForce = 5;
     public float DashForceAmount = 10;
     private bool canDash = true;
 
-    private float XPosLastFrame;
-    public Animator animator;
-    public SpriteRenderer spriteRenderer;
+    private float initScale;
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        initScale = transform.localScale.x;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (direction.x  > 0)
+        {
+            transform.localScale = new Vector3(initScale, transform.localScale.y, transform.localScale.z);
+        }
+        else if (direction.x < 0)
+        {
+            transform.localScale = new Vector3(-initScale, transform.localScale.y, transform.localScale.z);
+        }
+       
         HandlePlayerXMovement();
         MaxSpeedLimit();
-        FlipCharacterX();
+        //FlipCharacterX();
         //transform.position += new Vector3(direction.x, direction.y, 0) * Time.deltaTime * speed;
     }
 
@@ -39,33 +53,31 @@ public class PlayerMotor : MonoBehaviour
         if (direction.x != 0)
         {
             rigidbody2D.AddForce(new Vector2(direction.x, 0) * speed);
+            animator.SetBool("IsMoving", true);
         }
         else if (rigidbody2D.linearVelocityX != 0)
         {
             rigidbody2D.AddForce(new Vector2(-rigidbody2D.linearVelocityX * stoppingForce, 0));
         }
-        if (direction.x != 0)
+        if (direction.x == 0)
         {
-            animator.SetBool("IsRunning", true);
+            animator.SetBool("IsMoving", false);
         }
-        else
-        {
-            animator.SetBool("IsRunning", false);
-        }
+
     }
 
-    private void FlipCharacterX()
-    {
-        if (transform.position.x > XPosLastFrame)
-        {
-            spriteRenderer.flipX = false;
-        }
-        else if (transform.position.x < XPosLastFrame)
-        {
-            spriteRenderer.flipX = true;
-        }
-        XPosLastFrame = transform.position.x;
-    }
+    //private void FlipCharacterX()
+    //{
+    //    if (transform.position.x > initScale)
+    //    {
+    //        spriteRenderer.flipX = false;
+    //    }
+    //    else if (transform.position.x < initScale)
+    //    {
+    //        spriteRenderer.flipX = true;
+    //    }
+    //    initScale = transform.position.x;
+    //}
 
     private void MaxSpeedLimit()
     {
@@ -95,12 +107,22 @@ public class PlayerMotor : MonoBehaviour
         if (canJump)
         {
             rigidbody2D.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
-            canJump = false;
+            animator.SetBool("InAir", true);
+            JumpCount++;
+            //animator.SetBool("InAir", false);
+            //animator.SetInteger("IsDoubleJump", 1);       
+            if (JumpCount >= MaxJump)
+            {
+                canJump = false;
+            }
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)  
     {
         canJump = true;
+        animator.SetBool("InAir", false);
+        animator.SetBool("IsGround", false);
+        JumpCount = 0;
     }
     private void OnDash()
     {
