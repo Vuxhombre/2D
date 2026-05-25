@@ -46,6 +46,8 @@ public class PlayerMotor : MonoBehaviour
         MaxSpeedLimit();
         //FlipCharacterX();
         //transform.position += new Vector3(direction.x, direction.y, 0) * Time.deltaTime * speed;
+
+        animator.SetFloat("SpeedY", rigidbody2D.linearVelocityY);
     }
 
     private void HandlePlayerXMovement()
@@ -107,12 +109,13 @@ public class PlayerMotor : MonoBehaviour
         if (canJump)
         {
             rigidbody2D.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
-            animator.SetBool("InAir", true);
             JumpCount++;
+            
             //animator.SetBool("InAir", false);
-            //animator.SetInteger("IsDoubleJump", 1);       
+            //animator.SetInteger("IsDoubleJump", 1); 
             if (JumpCount >= MaxJump)
             {
+                animator.SetBool("IsDoubleJump", true);
                 canJump = false;
             }
         }
@@ -120,8 +123,7 @@ public class PlayerMotor : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)  
     {
         canJump = true;
-        animator.SetBool("InAir", false);
-        animator.SetBool("IsGround", false);
+        animator.SetBool("IsDoubleJump", false);
         JumpCount = 0;
     }
     private void OnDash()
@@ -136,7 +138,6 @@ public class PlayerMotor : MonoBehaviour
             else
             {
                 rigidbody2D.AddForce(new Vector2(DashForceAmount, 0), ForceMode2D.Impulse);
-
             }
             canDash = false;
             StartCoroutine(ResetDash(1));

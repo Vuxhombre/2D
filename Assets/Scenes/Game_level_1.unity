@@ -5535,57 +5535,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2958639109557223593, guid: 8d871dab3a4ba3249ad250f1b1d7aef2, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: db776ba1aed694145b5b9f902fe15817, type: 2}
-    - target: {fileID: 4568135938916703739, guid: 8d871dab3a4ba3249ad250f1b1d7aef2, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 7166236263522030466, guid: 97d5ce53f3ac76e4888319c6a53c7ff3, type: 3}
-    - target: {fileID: 6707494133431242367, guid: 8d871dab3a4ba3249ad250f1b1d7aef2, type: 3}
-      propertyPath: m_Size.x
-      value: 0.21120338
-      objectReference: {fileID: 0}
-    - target: {fileID: 6707494133431242367, guid: 8d871dab3a4ba3249ad250f1b1d7aef2, type: 3}
-      propertyPath: m_Size.y
-      value: 0.25639543
-      objectReference: {fileID: 0}
-    - target: {fileID: 6707494133431242367, guid: 8d871dab3a4ba3249ad250f1b1d7aef2, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.004221849
-      objectReference: {fileID: 0}
-    - target: {fileID: 6707494133431242367, guid: 8d871dab3a4ba3249ad250f1b1d7aef2, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.03132008
-      objectReference: {fileID: 0}
-    - target: {fileID: 6707494133431242367, guid: 8d871dab3a4ba3249ad250f1b1d7aef2, type: 3}
-      propertyPath: m_SpriteTilingProperty.pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6707494133431242367, guid: 8d871dab3a4ba3249ad250f1b1d7aef2, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 6707494133431242367, guid: 8d871dab3a4ba3249ad250f1b1d7aef2, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.32
-      objectReference: {fileID: 0}
     - target: {fileID: 7194526415687886873, guid: 8d871dab3a4ba3249ad250f1b1d7aef2, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7460842101155259909, guid: 8d871dab3a4ba3249ad250f1b1d7aef2, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 6.1586328
-      objectReference: {fileID: 0}
-    - target: {fileID: 7460842101155259909, guid: 8d871dab3a4ba3249ad250f1b1d7aef2, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 6.1586328
-      objectReference: {fileID: 0}
-    - target: {fileID: 7460842101155259909, guid: 8d871dab3a4ba3249ad250f1b1d7aef2, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 6.1586328
       objectReference: {fileID: 0}
     - target: {fileID: 7460842101155259909, guid: 8d871dab3a4ba3249ad250f1b1d7aef2, type: 3}
       propertyPath: m_LocalPosition.x

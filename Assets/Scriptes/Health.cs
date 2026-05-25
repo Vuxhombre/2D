@@ -23,11 +23,13 @@ public class Health : MonoBehaviour
     public delegate void OnHpInitializedHandler(float currentHealth);
     public event OnHpInitializedHandler OnHpInitialized;
 
+    Animator animator;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Hp = MaxHP;
         OnHpInitialized?.Invoke(Hp);
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -41,9 +43,10 @@ public class Health : MonoBehaviour
         if (!invicibility)
         {
             Hp -= damage;
+            animator.SetBool("IsHit", true);
             OnHealthChanged?.Invoke(Hp, damage);
             invicibility = true;
-            StartCoroutine(ResetInvicibility(3));
+            StartCoroutine(ResetInvicibility(2));
             //Debug.Log(Hp);
 
             if (Hp <= 0)
@@ -56,6 +59,7 @@ public class Health : MonoBehaviour
     IEnumerator ResetInvicibility(float resetTime)
     {
         yield return new WaitForSeconds(resetTime);
+        animator.SetBool("IsHit", false);
         invicibility = false;
         //Debug.Log("reset");
     }
