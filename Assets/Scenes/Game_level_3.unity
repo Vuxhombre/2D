@@ -5305,7 +5305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b93662263bb713549bec1aa67edba443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelToExecute: WinGame
+  LevelToExecute: Game_level_4
 --- !u!61 &2480123354283895429
 BoxCollider2D:
   m_ObjectHideFlags: 0

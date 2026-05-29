@@ -23,6 +23,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WinGame.unity
     guid: 91eb14dd6a440644486152a7b0a8b11c
+  - enabled: 1
+    path: Assets/Scenes/Game_level_4.unity
+    guid: 3b4828b6e9609b545890dcea0bd2a1c5
+  - enabled: 1
+    path: Assets/Scenes/Game_level_5.unity
+    guid: 317528f5b8b474e4d9550f58ceeafaa3
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

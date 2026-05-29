@@ -229,8 +229,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Hp: 0
   MaxHP: 10
-  CoinForHP: 10
-  RemoveCoins: 10
+  CoinForHP: 5
+  RemoveCoins: 5
   Coincomponent: {fileID: 581078636989533434}
   CoinHpAdd: 10
 --- !u!114 &581078636989533434
